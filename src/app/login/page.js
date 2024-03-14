@@ -8,12 +8,12 @@ import { AuthService } from "@/services/authService";
 
 const initialLogin = {
     email: '',
-    password: '',
-    error_list: []
+    password: ''
   };
 
 export default function Page(){
     const [loginData, setLoginData] = useState(initialLogin);
+    const [error, setError] = useState("");
 
     const router = useRouter();
     const api = AuthService();
@@ -27,7 +27,7 @@ export default function Page(){
                 alert(res.data.msg);
                 router.push("/auth") 
             }).catch(error => {
-                console.log(error)
+                setError(error.response.data.message)
             })    
         });
     }
@@ -65,6 +65,8 @@ export default function Page(){
                     value={loginData.password} 
                     onChange={handleInput}/>
                 </label>
+
+                <span>{error}</span>
 
                 <input type="submit" value="Login" />
             </form>

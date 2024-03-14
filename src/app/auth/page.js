@@ -1,6 +1,7 @@
 'use client'
 import { AuthService } from '@/services/authService';
 import { redirect, useRouter } from 'next/navigation';
+import styles from '../page.module.css';
 
 function Page() {
 
@@ -23,19 +24,18 @@ function Page() {
   }
 
   return (
-    <>
-    
+    <div className={styles.main}>
     {
       auth ? 
       <div>
         <h2>Rutas privadas</h2>
-        <p>Esto puedes verlo</p>
+        <p>Esto puedes verlo solo si estás autenticado y autorizado</p>
         <button onClick={handleLogout}>logout</button>
       </div> 
       : 
       redirect('/login')
     }
-    </>
+    </div>
     
   )
 }
