@@ -1,5 +1,6 @@
 import { Inter } from "next/font/google";
 import "./globals.css";
+import AuthContextProvider from "@/context/authContext";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -11,8 +12,14 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}
-        </body>
+      <head>
+        <link rel="shortcut icon" href="./favicon.ico" type="image/x-icon" />
+      </head>
+      <body className={inter.className}>
+        <AuthContextProvider>
+          {children}
+        </AuthContextProvider>
+      </body>
     </html>
   );
 }

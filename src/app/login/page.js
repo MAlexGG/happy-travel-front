@@ -3,8 +3,9 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useState } from "react"
-import styles from '../page.module.css';
+import styles from './page.module.css';
 import { AuthService } from "@/services/authService";
+import { useAuthContext } from "@/context/authContext";
 
 const initialLogin = {
     email: '',
@@ -17,13 +18,14 @@ export default function Page(){
 
     const router = useRouter();
     const api = AuthService();
+    const { login } = useAuthContext();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         axios.get('/sanctum/csrf-cookie').then(resp => {
             api.postLogin(loginData).then(res => {
                 const tokens = res.data.token;
-                localStorage.setItem('auth_token', tokens);
+                login(tokens);
                 alert(res.data.msg);
                 router.push("/auth") 
             }).catch(error => {
@@ -42,9 +44,11 @@ export default function Page(){
 
 
     return (
-        <div className={styles.main}>
-            <form onSubmit={handleSubmit}>
-                <label htmlFor="email">
+        <div className={styles.ctPage}>
+            <form onSubmit={handleSubmit} className={styles.formLogin}>
+                <h3 className={styles.txtTitle}>Acceso de usuario</h3>
+                <hr />
+                <label htmlFor="email" className={styles.lbLogin}>
                     E-mail
                     <input 
                     type="email"
@@ -52,10 +56,11 @@ export default function Page(){
                     id="email"
                     placeholder="example@mail.com"
                     value={loginData.email} 
-                    onChange={handleInput}/>
+                    onChange={handleInput}
+                    className={styles.inptLogin}/>
                 </label>
 
-                <label htmlFor="password">
+                <label htmlFor="password" className={styles.lbLogin}>
                     Password
                     <input 
                     type="password"
@@ -63,12 +68,16 @@ export default function Page(){
                     id="password"
                     placeholder="Password..."
                     value={loginData.password} 
-                    onChange={handleInput}/>
+                    onChange={handleInput}
+                    className={styles.inptLogin}/>
                 </label>
 
-                <span>{error}</span>
+                <span className={styles.sLogin}>{error}</span>
 
-                <input type="submit" value="Login" />
+                <div className={styles.ctButtons}>
+                    <button type="submit" className={`${styles.btLogin} ${styles.btAccept}`}>Aceptar</button>
+                    <button type="reset" className={`${styles.btLogin} ${styles.btCancel}`}>Cancelar</button>
+                </div>
             </form>
         </div>
     )
