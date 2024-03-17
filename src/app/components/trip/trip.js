@@ -1,15 +1,15 @@
 import styles from './trip.module.css';
-import test from './2021-03-19.jpg';
 import Image from 'next/image';
 
 function Trip({trip}) {
 
-    const { title, location } = trip;
+    const { title, location, image } = trip;
+
   return (
     <div className={styles.ctTrip}>
       <div className={styles.ctImg}>
         <Image
-          src={test}
+          src={`http://localhost:8000/storage/${image}`}
           height={300}
           width={300}
           alt={title}

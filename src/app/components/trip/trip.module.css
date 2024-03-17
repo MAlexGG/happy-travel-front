@@ -4,14 +4,14 @@
     justify-content: flex-start;
     align-items: center;
     position: relative;
-    width: 300px;
-    height: 373px;
+    width: 260px;
+    height: 333px;
     border-radius: 20px;
 }
 
 .ctImg {
-    width: 300px;
-    height: 300px;
+    width: 260px;
+    height: 260px;
     border-radius: 20px;
     overflow: hidden;
 }
@@ -27,7 +27,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
-    width: 300px;
+    width: 260px;
     height: 100px;
     position: absolute;
     bottom: 0;
