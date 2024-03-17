@@ -39,9 +39,9 @@
 }
 
 .ctTxt h6 {
-    font-size: var(--font-size-25);
+    font-size: var(--font-size-s);
 }
 
 .ctTxt p {
-    font-size: var(--font-size-20);
+    font-size: var(--font-size-xs);
 }

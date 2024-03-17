@@ -1,45 +1,43 @@
 'use client'
 
 import axios from "axios";
-import { useRouter } from "next/navigation";
 import React, { useState } from "react"
 import styles from './page.module.css';
 import { AuthService } from "@/services/authService";
-import { useAuthContext } from "@/context/authContext";
 import Navbar from "../components/navbar/navbar";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
-const initialLogin = {
+const initialSignin = {
+    name: '',
     email: '',
     password: ''
   };
 
 export default function Page(){
-    const [loginData, setLoginData] = useState(initialLogin);
+    const [signinData, setSigninData] = useState(initialSignin);
     const [error, setError] = useState("");
 
     const router = useRouter();
     const api = AuthService();
-    const { login } = useAuthContext();
 
     const handleSubmit = async (e) => {
         e.preventDefault();
         axios.get('/sanctum/csrf-cookie').then(resp => {
-            api.postLogin(loginData).then(res => {
-                const tokens = res.data.token;
-                login(tokens);
+            api.postRegister(signinData).then(res => {
                 alert(res.data.msg);
-                router.push("/auth") 
+                router.push("/login") 
             }).catch(error => {
-                setError(error.response.data.message)
+                console.log(error)
+                //setError(error.response.data.message)
             })    
         });
     }
 
     const handleInput = (e) => {
         e.persist();
-        setLoginData({
-          ...loginData,
+        setSigninData({
+          ...signinData,
           [e.target.name]: e.target.value
         });
       };
@@ -50,8 +48,21 @@ export default function Page(){
             <Navbar/>
             <div className={styles.ctForm}>
                 <form onSubmit={handleSubmit} className={styles.formLogin}>
-                    <h3 className={styles.txtTitle}>Acceso de usuario</h3>
+                    <h3 className={styles.txtTitle}>Registro de usuario</h3>
                     <hr />
+
+                    <label htmlFor="name" className={styles.lbLogin}>
+                        Nombre
+                        <input 
+                        type="name"
+                        name="name"
+                        id="name"
+                        placeholder="Nombre..."
+                        value={signinData.name} 
+                        onChange={handleInput}
+                        className={styles.inptLogin}/>
+                    </label>
+
                     <label htmlFor="email" className={styles.lbLogin}>
                         E-mail
                         <input 
@@ -59,7 +70,7 @@ export default function Page(){
                         name="email"
                         id="email"
                         placeholder="example@mail.com"
-                        value={loginData.email} 
+                        value={signinData.email} 
                         onChange={handleInput}
                         className={styles.inptLogin}/>
                     </label>
@@ -71,7 +82,7 @@ export default function Page(){
                         name="password"
                         id="password"
                         placeholder="Password..."
-                        value={loginData.password} 
+                        value={signinData.password} 
                         onChange={handleInput}
                         className={styles.inptLogin}/>
                     </label>
@@ -82,7 +93,7 @@ export default function Page(){
                         <button type="submit" className={`${styles.btLogin} ${styles.btAccept}`}>Aceptar</button>
                         <button type="reset" className={`${styles.btLogin} ${styles.btCancel}`}>Cancelar</button>
                     </div>
-                    <p className={styles.txtSignIn}>¿Aún no tienes cuenta? Regístrate <span><Link href={'/signin'}>aquí</Link></span></p>
+                    <p className={styles.txtSignIn}>¿Ya tienes cuenta? Inicia sesión <span><Link href={'/login'}>aquí</Link></span></p>
                 </form>
             </div>
         </div>

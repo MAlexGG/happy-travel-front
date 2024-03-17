@@ -8,8 +8,8 @@
     --padd-forms: 25px;
     --font-light: 400;
     --font-bold: 700;
-    --font-size-20: 20px;
-    --font-size-25: 25px;
+    --font-size-xs: 16px;
+    --font-size-s: 20px;
 }
 
 * {
