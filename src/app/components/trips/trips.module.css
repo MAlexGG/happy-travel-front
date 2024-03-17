@@ -1,0 +1,14 @@
+.ctTrips {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 95%;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin: 25px;
+}
+
+.txtError {
+    color: var(--red-color);
+    font-size: var(--font-size-25);
+}

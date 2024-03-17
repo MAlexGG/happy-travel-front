@@ -13,6 +13,7 @@ function Navbar() {
         src={logo}
         width={165}
         height={78}
+        alt='happy travel logo'
       />
       <nav className={styles.ctNav}>
         <Link href={'/'}>
@@ -20,6 +21,7 @@ function Navbar() {
             src={home}
             width={40}
             height={40}
+            alt='home'
           />
         </Link>
         <Link href={'/login'}>
@@ -27,6 +29,7 @@ function Navbar() {
             src={avatar}
             width={40}
             height={40}
+            alt='login'
           />
         </Link>
       </nav>

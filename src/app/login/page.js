@@ -47,40 +47,42 @@ export default function Page(){
     return (
         <div className={styles.ctPage}>
             <Navbar/>
-            <form onSubmit={handleSubmit} className={styles.formLogin}>
-                <h3 className={styles.txtTitle}>Acceso de usuario</h3>
-                <hr />
-                <label htmlFor="email" className={styles.lbLogin}>
-                    E-mail
-                    <input 
-                    type="email"
-                    name="email"
-                    id="email"
-                    placeholder="example@mail.com"
-                    value={loginData.email} 
-                    onChange={handleInput}
-                    className={styles.inptLogin}/>
-                </label>
+            <div className={styles.ctForm}>
+                <form onSubmit={handleSubmit} className={styles.formLogin}>
+                    <h3 className={styles.txtTitle}>Acceso de usuario</h3>
+                    <hr />
+                    <label htmlFor="email" className={styles.lbLogin}>
+                        E-mail
+                        <input 
+                        type="email"
+                        name="email"
+                        id="email"
+                        placeholder="example@mail.com"
+                        value={loginData.email} 
+                        onChange={handleInput}
+                        className={styles.inptLogin}/>
+                    </label>
 
-                <label htmlFor="password" className={styles.lbLogin}>
-                    Password
-                    <input 
-                    type="password"
-                    name="password"
-                    id="password"
-                    placeholder="Password..."
-                    value={loginData.password} 
-                    onChange={handleInput}
-                    className={styles.inptLogin}/>
-                </label>
+                    <label htmlFor="password" className={styles.lbLogin}>
+                        Password
+                        <input 
+                        type="password"
+                        name="password"
+                        id="password"
+                        placeholder="Password..."
+                        value={loginData.password} 
+                        onChange={handleInput}
+                        className={styles.inptLogin}/>
+                    </label>
 
-                <span className={styles.sLogin}>{error}</span>
+                    <span className={styles.sLogin}>{error}</span>
 
-                <div className={styles.ctButtons}>
-                    <button type="submit" className={`${styles.btLogin} ${styles.btAccept}`}>Aceptar</button>
-                    <button type="reset" className={`${styles.btLogin} ${styles.btCancel}`}>Cancelar</button>
-                </div>
-            </form>
+                    <div className={styles.ctButtons}>
+                        <button type="submit" className={`${styles.btLogin} ${styles.btAccept}`}>Aceptar</button>
+                        <button type="reset" className={`${styles.btLogin} ${styles.btCancel}`}>Cancelar</button>
+                    </div>
+                </form>
+            </div>
         </div>
     )
 }
