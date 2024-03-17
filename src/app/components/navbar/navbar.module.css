@@ -1,0 +1,15 @@
+.ctHeader {
+    width: 95%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--blue-color);
+    padding: 15px;
+}
+
+.ctNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

@@ -6,6 +6,7 @@ import React, { useState } from "react"
 import styles from './page.module.css';
 import { AuthService } from "@/services/authService";
 import { useAuthContext } from "@/context/authContext";
+import Navbar from "../components/navbar/navbar";
 
 const initialLogin = {
     email: '',
@@ -45,6 +46,7 @@ export default function Page(){
 
     return (
         <div className={styles.ctPage}>
+            <Navbar/>
             <form onSubmit={handleSubmit} className={styles.formLogin}>
                 <h3 className={styles.txtTitle}>Acceso de usuario</h3>
                 <hr />
