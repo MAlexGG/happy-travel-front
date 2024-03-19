@@ -16,6 +16,7 @@ axios.interceptors.request.use(function(config){
 
 export const TripsService = () => {
   const urlGetAll = '/api/destinations';
+  const urlGetAllOrderByAuthUser = '/api/destinations/dashboard';
 
 
   const getTrips = async () => {
@@ -23,9 +24,14 @@ export const TripsService = () => {
     return res;
   };
   
+  const getTripsOrderByAuthUser = async () => {
+    const res = await axios.get(urlGetAllOrderByAuthUser);
+    return res;
+  }
   
 
   return {
-    getTrips
+    getTrips,
+    getTripsOrderByAuthUser
   }
 }

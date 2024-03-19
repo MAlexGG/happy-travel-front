@@ -10,12 +10,12 @@ export function middleware(request){
         return response;
     }
 
-    if(authTokens && request.nextUrl.pathname.startsWith("/login")){
+    if(authTokens && request.nextUrl.pathname.startsWith("/login") || authTokens && request.nextUrl.pathname.startsWith("/signin")){
         const response = NextResponse.redirect(new URL("/auth", request.url));
         return response;
     }
 }
 
 export const config = {
-    matcher: ["/auth(.*)", "/login"]
+    matcher: ["/auth(.*)", "/login", "/signin"]
 };

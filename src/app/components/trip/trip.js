@@ -1,9 +1,11 @@
+import { AuthContext, useAuthContext } from '@/context/authContext';
 import styles from './trip.module.css';
 import Image from 'next/image';
 
 function Trip({trip}) {
 
     const { title, location, image } = trip;
+    const { isAuthenticated } = useAuthContext();
 
   return (
     <div className={styles.ctTrip}>
@@ -20,6 +22,14 @@ function Trip({trip}) {
           <h6>{title}</h6>
           <p>{location}</p>
       </div>
+      {
+        isAuthenticated && 
+        <div>
+          <p>edit</p>
+          <p>delete</p>
+      </div>
+      }
+      
     </div>
   )
 }

@@ -28,8 +28,7 @@ export default function Page(){
                 alert(res.data.msg);
                 router.push("/login") 
             }).catch(error => {
-                console.log(error)
-                //setError(error.response.data.message)
+                setError(error.response.data.message)
             })    
         });
     }

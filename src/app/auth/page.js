@@ -1,15 +1,29 @@
 'use client'
 
+import { useEffect, useState } from 'react';
+import Navbar from '../components/navbar/navbar';
+import Trips from '../components/trips/trips';
 import styles from '../page.module.css';
-import Link from 'next/link';
+import { TripsService } from '@/services/tripsService';
 
 function Page() {
 
+  const [tripsAuth, setTripsAuth] = useState();
+  const api = TripsService();
+
+  useEffect(() => {
+    api.getTripsOrderByAuthUser().then(res => {
+      setTripsAuth(res.data)
+    }).catch(error => {
+      console.log(error);
+    })
+  }, [])
+
   return (
     <div className={styles.main}>
-      <h2>Rutas privadas</h2>
-      <p>Esto puedes verlo solo si estás autenticado y autorizado</p>
-      <Link href="/auth/logout">Logout</Link>
+      <Navbar/>
+      <Trips trips={tripsAuth}/>
+
     </div>
     
   )
