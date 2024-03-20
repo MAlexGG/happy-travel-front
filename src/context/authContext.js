@@ -12,22 +12,26 @@ export const AuthContext = createContext({
 export default function AuthContextProvider({children}){
 
     const [isAuthenticated, setIsAuthenticated] = useState(false);
+    const [userId, setUserId] = useState('');
 
-    const login = useCallback(function (authTokens){
+    const login = useCallback(function (authTokens, user_id){
         Cookies.set("authTokens", authTokens);
+        setUserId(user_id);
         setIsAuthenticated(true);
     },[]);
 
     const logout = useCallback(function(){
         Cookies.remove("authTokens");
+        setUserId('');
         setIsAuthenticated(false);
     },[]);
 
     const value = useMemo(() => ({
         login,
         logout,
-        isAuthenticated
-    }), [login, logout,  isAuthenticated]);
+        isAuthenticated,
+        userId
+    }), [login, logout,  isAuthenticated, userId]);
 
     return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 }

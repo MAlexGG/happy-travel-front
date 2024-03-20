@@ -27,7 +27,8 @@ export default function Page(){
         axios.get('/sanctum/csrf-cookie').then(resp => {
             api.postLogin(loginData).then(res => {
                 const tokens = res.data.token;
-                login(tokens);
+                const user_id = res.data.user_id;
+                login(tokens, user_id);
                 alert(res.data.msg);
                 router.push("/auth") 
             }).catch(error => {
